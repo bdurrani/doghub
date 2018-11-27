@@ -1,0 +1,36 @@
+{
+  "name": "db-api",
+  "version": "0.0.0",
+  "description": "The database api",
+  "keywords": [],
+  "author": "Bilal Durrani <bilal@hubdoc.com>",
+  "license": "ISC",
+  "main": "lib/db-api.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bdurrani/doghub.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/bdurrani/doghub/issues"
+  },
+  "homepage": "https://github.com/bdurrani/doghub#readme",
+  "dependencies": {
+    "dotenv": "^6.1.0",
+    "pg": "^7.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.10",
+    "@types/pg": "^7.4.11",
+    "typescript": "^3.1.6"
+  }
+}
