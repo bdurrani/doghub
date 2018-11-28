@@ -17,10 +17,20 @@
     "url": "git+https://github.com/bdurrani/doghub.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "tsc": "tsc"
   },
   "bugs": {
     "url": "https://github.com/bdurrani/doghub/issues"
   },
-  "homepage": "https://github.com/bdurrani/doghub#readme"
+  "homepage": "https://github.com/bdurrani/doghub#readme",
+  "dependencies": {
+    "puppeteer": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.10",
+    "@types/puppeteer": "^1.10.1",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.1.6"
+  }
 }
