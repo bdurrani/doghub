@@ -1,6 +1,6 @@
 {
   "name": "db-api",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "The database api",
   "keywords": [],
   "author": "Bilal Durrani <bilal@hubdoc.com>",
