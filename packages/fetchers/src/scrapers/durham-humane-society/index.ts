@@ -20,7 +20,7 @@ export class DurhamSocietyFetcher extends FetcherBase {
 
   async start() {
     this.browser = await puppeteer.launch({
-      headless: false
+      headless: true
     });
 
     const page = await this.browser.newPage();

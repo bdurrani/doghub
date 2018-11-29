@@ -21,7 +21,7 @@ class DurhamSocietyFetcher extends FetcherBase_1.FetcherBase {
     start() {
         return __awaiter(this, void 0, void 0, function* () {
             this.browser = yield puppeteer.launch({
-                headless: false
+                headless: true
             });
             const page = yield this.browser.newPage();
             yield page.goto(this.url, { waitUntil: "networkidle2", timeout: 60000 });
