@@ -12,7 +12,15 @@ var upload = multer();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post('/email_signup', upload.array(), (req, res) => {
+app.post('/', upload.array(), (req, res) => {
+    const email = req.body.email;
+    const fName = req.body.fname;
+    const lName = req.body.lname;
+    res.json({email});
+    }
+)
+
+app.get('/email_signup', upload.array(), (req, res) => {
     const email = req.body.email;
     const fName = req.body.fname;
     const lName = req.body.lname;
