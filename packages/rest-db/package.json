@@ -21,7 +21,8 @@
     "url": "git+https://github.com/bdurrani/doghub.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "start": "node ./lib/rest-db.js"
   },
   "dependencies": {
     "db-api": "1.0.0",
@@ -30,5 +31,12 @@
   "bugs": {
     "url": "https://github.com/bdurrani/doghub/issues"
   },
-  "homepage": "https://github.com/bdurrani/doghub#readme"
+  "homepage": "https://github.com/bdurrani/doghub#readme",
+  "devDependencies": {
+    "body-parser": "^1.18.3",
+    "mock-express-request": "^0.2.2",
+    "multer": "^1.4.1",
+    "nodemon": "^1.18.7",
+    "pg-promise": "^8.5.2"
+  }
 }
