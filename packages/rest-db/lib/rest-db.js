@@ -12,7 +12,7 @@ var upload = multer();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/email_signup', upload.array(), (req, res) => {
+app.post('/email_signup', upload.array(), (req, res) => {
     const email = req.body.email;
     const fName = req.body.fname;
     const lName = req.body.lname;
@@ -20,7 +20,7 @@ app.get('/email_signup', upload.array(), (req, res) => {
     }
 )
 
-app.listen(port, () => console.log(`App listening on port ${port}!`))
+app.listen(port, '0.0.0.0', () => console.log(`App listening on port ${port}!`))
 
 function restDb() {
     // TODO
