@@ -25,7 +25,8 @@
   },
   "homepage": "https://github.com/bdurrani/doghub#readme",
   "dependencies": {
-    "puppeteer": "^1.10.0"
+    "puppeteer": "^1.10.0",
+    "db-api": "1.0.0"
   },
   "devDependencies": {
     "@types/node": "^10.12.10",
