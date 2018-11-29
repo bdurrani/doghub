@@ -14,18 +14,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-app.post('/email_signup', upload.array(), (req, res) => {
-    const email = req.body.user.email;
-    const fName = req.body.user.fname;
-    const lName = req.body.user.lname;
-    res.json({email});
-    }
-)
-
-app.get('/email_signup', upload.array(), (req, res) => {
+app.post('/email_signup', (req, res) => {
+    console.log("POST")
+    console.log(JSON.stringify(req.body.email));
     const email = req.body.email;
-    const fName = req.body.fname;
-    const lName = req.body.lname;
     res.json({email});
     }
 )
