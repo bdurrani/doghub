@@ -3,6 +3,7 @@
 module.exports = restDb;
 
 const express = require('express')
+const cors = requires('cors')
 const app = express()
 const port = 3000
 var bodyParser = require('body-parser');
@@ -11,8 +12,9 @@ var upload = multer();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors);
 
-app.post('/', upload.array(), (req, res) => {
+app.post('/email_signup', upload.array(), (req, res) => {
     const email = req.body.email;
     const fName = req.body.fname;
     const lName = req.body.lname;

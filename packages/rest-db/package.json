@@ -34,6 +34,7 @@
   "homepage": "https://github.com/bdurrani/doghub#readme",
   "devDependencies": {
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
     "mock-express-request": "^0.2.2",
     "multer": "^1.4.1",
     "nodemon": "^1.18.7",
