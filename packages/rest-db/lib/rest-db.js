@@ -3,7 +3,7 @@
 module.exports = restDb;
 
 const express = require('express')
-const cors = requires('cors')
+const cors = require('cors')
 const app = express()
 const port = 3000
 var bodyParser = require('body-parser');
