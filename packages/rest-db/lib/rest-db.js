@@ -15,9 +15,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 app.post('/email_signup', upload.array(), (req, res) => {
-    const email = req.body.email;
-    const fName = req.body.fname;
-    const lName = req.body.lname;
+    const email = req.body.user.email;
+    const fName = req.body.user.fname;
+    const lName = req.body.user.lname;
     res.json({email});
     }
 )
