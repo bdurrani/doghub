@@ -16,7 +16,7 @@ app.post('/email_signup', upload.array(), (req, res) => {
     const email = req.body.email;
     const fName = req.body.fname;
     const lName = req.body.lname;
-    res.send(`Email: ${email} \nName: ${fName} ${lName}`)
+    res.json({email});
     }
 )
 
