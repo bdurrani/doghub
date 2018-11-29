@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const puppeteer = require("puppeteer");
+const cheerio = require("cheerio");
 const FetcherBase_1 = require("../interfaces/FetcherBase");
 class DurhamSocietyFetcher extends FetcherBase_1.FetcherBase {
     constructor() {
@@ -17,9 +18,13 @@ class DurhamSocietyFetcher extends FetcherBase_1.FetcherBase {
     }
     start() {
         return __awaiter(this, void 0, void 0, function* () {
-            this.browser = yield puppeteer.launch({});
+            this.browser = yield puppeteer.launch({
+                headless: false
+            });
             const page = yield this.browser.newPage();
-            yield page.goto(this.url);
+            yield page.goto(this.url, { waitUntil: "networkidle2" });
+            const html = yield page.content();
+            const $ = cheerio.load(html);
         });
     }
     dispose() {
