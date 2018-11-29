@@ -12,7 +12,7 @@ var upload = multer();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors);
+app.use(cors());
 
 app.post('/email_signup', upload.array(), (req, res) => {
     const email = req.body.email;
