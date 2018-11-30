@@ -1,9 +1,10 @@
-'use strict';
+"use strict";
 
-const schedule = require('node-schedule');
-require('dotenv').config()
+const schedule = require("node-schedule");
+require("dotenv").config();
 
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
+const { DoggyDb } = require("db-api");
 
 // MAILER
 
@@ -188,57 +189,105 @@ Hi! My name is <b>Goldie</b> and I'm 2.5 years young. I'm a very friendly girl w
 		</td>
 		<td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0;" valign="top"></td>
 	</tr></table></body>
-</html>`
+</html>`;
 
 let transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-           user: 'doghubnewsletter@gmail.com',
-           pass: 'Hubdoc1!'
-       }
-   });
+  service: "gmail",
+  auth: {
+    user: "doghubnewsletter@gmail.com",
+    pass: "Hubdoc1!"
+  }
+});
 
 const mailOptions = {
-    from: 'Doghub News <doghubnewsletter@gmail.com>', // sender address
-    to: 'bilal@hubdoc.com', // list of receivers
-    subject: 'Doghub Weekly 🐶', // Subject line
-    html: mail_template// plain text body
+  from: "Doghub News <doghubnewsletter@gmail.com>", // sender address
+  to: "bilal@hubdoc.com", // list of receivers
+  subject: "Doghub Weekly 🐶", // Subject line
+  html: mail_template // plain text body
 };
 
-transporter.sendMail(mailOptions, function (err, info) {
-    if(err)
-      console.log(err)
-    else
-      console.log(info);
- });
+// transporter.sendMail(mailOptions, function(err, info) {
+//   if (err) console.log(err);
+//   else console.log(info);
+// });
+function sendEmail(email) {
+  const mailOptions = {
+    from: "Doghub News <doghubnewsletter@gmail.com>", // sender address
+    to: email, // list of receivers
+    subject: "Doghub Weekly 🐶", // Subject line
+    html: mail_template // plain text body
+  };
 
+  transporter.sendMail(mailOptions, function(err, info) {
+    if (err) {
+      console.log(`error: ${err}`);
+    } else console.log(info);
+  });
+}
 // SCHEDULER
 
-// const sgMail = require('@sendgrid/mail');
-// sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-// const msg = {
-//     to: 'xander@hubdoc.com',
-//     from: 'newsletter@doghub.com',
-//     subject: 'DogHub Weekly',
-//     text: message_template,
-//     html: message_template,
-// };
+let userMap = new Map();
+const dogDb = new DoggyDb();
 
-function dogwalker() {
-    let rule = new schedule.RecurrenceRule();
-    //run job every minute
-    rule.second =  5;
-    let job = schedule.scheduleJob(rule, function(){
-        //sgMail.send(msg);
-    });
+// async function dogwalker() {
+//   let rule = new schedule.RecurrenceRule();
+//   //run job every minute
+//   rule.second = 10;
+//   let job = schedule.scheduleJob(rule, async function() {
+//     //sgMail.send(msg);
+//     await doWork();
+//   });
 
-    let rule2 = new schedule.RecurrenceRule();
-    //run job every minute
-    rule2.second =  5;
-    let job2 = schedule.scheduleJob(rule2, function(){
-        console.log('Next!');
-    });
+//   let rule2 = new schedule.RecurrenceRule();
+//   //run job every minute
+//   rule2.second = 10;
+//   let job2 = schedule.scheduleJob(rule2, function() {
+//     console.log("Next!");
+//   });
+// }
+
+const INTERVAL_TIME = 5000;
+async function dogwalker2() {
+  await doWork();
+
+  setTimeout(async () => {
+    await dogwalker2();
+  }, INTERVAL_TIME);
 }
 
-dogwalker();
+setTimeout(() => dogwalker2(), INTERVAL_TIME);
+
+async function doWork() {
+  try {
+    console.log("go do work");
+    const users = await dogDb.getUsers();
+    if (!users) {
+      return;
+    }
+
+    if (users.length > userMap.size) {
+      for (let i = 0; i < users.length; i++) {
+        if (!userMap.has(users[i].id)) {
+          const email = users[i].email;
+          console.log(`sent this user an email ${email}`);
+          sendEmail(email);
+        }
+      }
+
+      userMap.clear();
+      users.forEach(item => {
+        userMap.set(item.id, item);
+      });
+      userCounter = userMap.length;
+    }
+  } catch (error) {
+    console.log(`error: ${error}`);
+  }
+}
+
+(async () => {
+  await dogDb.connect();
+  await dogwalker2();
+  //   await dogwalker();
+})();
 module.exports = dogwalker;
