@@ -14,7 +14,7 @@ async function test() {
 }
 
 (async () => {
-  await test();
+  //   await test();
 })();
 
 module.exports = {
