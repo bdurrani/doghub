@@ -1,7 +1,22 @@
-'use strict';
+"use strict";
 
-module.exports = dbApi;
+const dotenv = require("dotenv");
+const DoggyDb = require("./doggydb");
+dotenv.config();
 
-function dbApi() {
-    // TODO
+async function test() {
+  const db = new DoggyDb();
+  await db.connect();
+  const res = await db.adduser("another", "user", "dogdiggity213@dogdang.com");
+  console.log(res);
+
+  db.dispose();
 }
+
+(async () => {
+  await test();
+})();
+
+module.exports = {
+  DoggyDb
+};

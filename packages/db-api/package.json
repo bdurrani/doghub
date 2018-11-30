@@ -18,7 +18,8 @@
     "url": "git+https://github.com/bdurrani/doghub.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "start": "node ./db-api.js"
   },
   "bugs": {
     "url": "https://github.com/bdurrani/doghub/issues"
