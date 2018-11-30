@@ -1,6 +1,6 @@
 {
   "name": "rest-db",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Now I’m the model of a modern major general / The venerated Virginian veteran whose men are all / Lining up, to put me up on a pedestal / Writin’ letters to relatives / Embellishin’ my elegance and eloquence / But the elephant is in the room / The truth is in ya face when ya hear the British cannons go / BOOM",
   "keywords": [],
   "author": "BIlal Durrani <bilal@hubdoc.com>",
@@ -26,7 +26,7 @@
     "start-prod": "pm2 start --env production"
   },
   "dependencies": {
-    "db-api": "1.0.0",
+    "db-api": "^1.0.3",
     "express": "^4.16.4",
     "pm2": "^3.2.2"
   },
