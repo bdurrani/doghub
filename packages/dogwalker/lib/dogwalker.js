@@ -191,7 +191,7 @@ Hi! My name is <b>Goldie</b> and I'm 2.5 years young. I'm a very friendly girl w
 	</tr></table></body>
 </html>`;
 
-let transporter = nodemailer.createTransport({
+const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: "doghubnewsletter@gmail.com",
@@ -199,17 +199,18 @@ let transporter = nodemailer.createTransport({
   }
 });
 
-const mailOptions = {
-  from: "Doghub News <doghubnewsletter@gmail.com>", // sender address
-  to: "bilal@hubdoc.com", // list of receivers
-  subject: "Doghub Weekly 🐶", // Subject line
-  html: mail_template // plain text body
-};
+// const mailOptions = {
+//   from: "Doghub News <doghubnewsletter@gmail.com>", // sender address
+//   to: "bilal@hubdoc.com", // list of receivers
+//   subject: "Doghub Weekly 🐶", // Subject line
+//   html: mail_template // plain text body
+// };
 
 // transporter.sendMail(mailOptions, function(err, info) {
 //   if (err) console.log(err);
 //   else console.log(info);
 // });
+
 function sendEmail(email) {
   const mailOptions = {
     from: "Doghub News <doghubnewsletter@gmail.com>", // sender address
@@ -278,7 +279,7 @@ async function doWork() {
       users.forEach(item => {
         userMap.set(item.id, item);
       });
-      userCounter = userMap.length;
+      //   userCounter = userMap.length;
     }
   } catch (error) {
     console.log(`error: ${error}`);
@@ -286,8 +287,9 @@ async function doWork() {
 }
 
 (async () => {
+  console.log("starting service");
   await dogDb.connect();
+  console.log("connected to database");
   await dogwalker2();
-  //   await dogwalker();
 })();
-module.exports = dogwalker;
+// module.exports = dogwalker;
